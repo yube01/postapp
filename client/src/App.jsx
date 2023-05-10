@@ -5,8 +5,8 @@ import Register from "./page/Register";
 import "./style.scss";
 // import Header from "./components/Header";
 // import Footer from "./components/Footer";
-// import Single from "./page/Single";
-// import Write from "./page/Write";
+import Single from "./page/Single";
+import Write from "./page/Write";
 
 // const Layout = () => {
 //   <>
@@ -46,6 +46,14 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/write",
+    element: <Write />,
+  },
+  {
+    path: "/single",
+    element: <Single />,
   },
 ]);
 
