@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-
 const Single = () => {
   return (
+    <></>
     // <div className="single">
     //   <div className="content">
     //     <img src={`../upload/${post?.img}`} alt="" />
