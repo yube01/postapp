@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 const Register = () => {
   const [input, setInput] = useState({
@@ -7,6 +7,10 @@ const Register = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
+
+  const [err, setErr] = useState(null);
 
   const handleChange = (e) => {
     setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -20,8 +24,9 @@ const Register = () => {
         input
       );
       console.log(res);
+      navigate("/login");
     } catch (error) {
-      console.log(error);
+      setErr(error.response.data);
     }
   };
 
@@ -51,7 +56,7 @@ const Register = () => {
           name="password"
         />
         <button onClick={handleSubmit}>Register</button>
-
+        {err && <p>{err}</p>}
         <span>
           Do you have an account? <Link to="/login">Login</Link>
         </span>

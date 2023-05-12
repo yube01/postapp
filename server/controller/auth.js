@@ -1,6 +1,6 @@
 import { db } from "../connect.js";
 import bcrypt from "bcryptjs";
-
+import jwt from "jsonwebtoken";
 export const register = (req, res) => {
   const q = "SELECT * FROM users WHERE email = ? OR username = ?";
   db.query(q, [req.body.email, req.body.username], (err, data) => {
@@ -20,6 +20,29 @@ export const register = (req, res) => {
   });
 };
 
-export const login = (req, res) => {};
+export const login = (req, res) => {
+  const q = "SELECT * FROM usesr WHERE username = ?";
+  db.query(q, [req.body.username], (err, data) => {
+    if (err) return res.json(err);
+    if (data.length === 0) return res.status(404).json("Username not found");
+
+    const correctPassword = bcrypt.compareSync(
+      req.body.password,
+      data[0].password
+    );
+
+    const { password, ...other } = data[0];
+
+    if (!correctPassword) return res.status(400).json("Wrong Password");
+
+    const token = jwt.sign({ id: data[0].id }, "access token");
+    res
+      .cookie("access token", token, {
+        httpOnly: true,
+      })
+      .status(200)
+      .json(other);
+  });
+};
 
 export const logout = (req, res) => {};
