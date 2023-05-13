@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
@@ -51,7 +50,7 @@ const Login = () => {
         <button onClick={handleSubmit}>Login</button>
         {err && <p>{err}</p>}
         <span>
-          Don't you have an account? <Link to="/register">Register</Link>
+          Dont you have an account? <Link to="/register">Register</Link>
         </span>
       </form>
     </div>

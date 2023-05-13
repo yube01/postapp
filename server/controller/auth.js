@@ -37,7 +37,7 @@ export const login = (req, res) => {
 
     const token = jwt.sign({ id: data[0].id }, "access token");
     res
-      .cookie("access token", token, {
+      .cookie("access_token", token, {
         httpOnly: true,
       })
       .status(200)
@@ -47,7 +47,7 @@ export const login = (req, res) => {
 
 export const logout = (req, res) => {
   res
-    .clearCookie("access token", {
+    .clearCookie("access_token", {
       sameSite: "none",
       secure: true,
     })
