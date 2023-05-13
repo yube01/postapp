@@ -11,8 +11,15 @@ export const getPosts = (req, res) => {
     return res.status(200).json(data);
   });
 };
+
 export const getPost = (req, res) => {
-  res.send("Post working");
+  const q =
+    "SELECT `username`,`title`,`desc`,p.img,u.img AS userImg,`cat`,`date` FROM users u JOIN post p ON u.id = p.uid WHERE p.id = ?";
+
+  db.query(q, [req.params.id], (err, data) => {
+    if (err) return res.send(err);
+    return res.status(200).json(data[0]);
+  });
 };
 
 export const deletePost = (req, res) => {

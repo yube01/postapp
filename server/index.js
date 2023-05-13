@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.use(cors());
 app.use(cookieParser());
-app.use("/posts", postRoute);
+app.use("/post", postRoute);
 app.use("/auth", authRoute);
 app.use("/user", userRoute);
 
