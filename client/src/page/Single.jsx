@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { AuthContext } from "../context/AuthContext";
 import Menu from "../components/Menu";
 
 const Single = () => {
+  const navigate = useNavigate();
+
   const [post, setPost] = useState({});
 
   const location = useLocation();
@@ -25,6 +27,16 @@ const Single = () => {
     };
     fetchData();
   }, [postId]);
+
+  const handleClick = async () => {
+    try {
+      await axios.delete(`http://localhost:2000/post/${postId}`);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="single">
       <div className="content">
@@ -40,7 +52,7 @@ const Single = () => {
               <Link to={`/write?edit=2`} state={post}>
                 <img src="" alt="edit icon" />
               </Link>
-              <img src="" alt="deleteicon" />
+              <img src="" alt="deleteicon" onClick={handleClick} />
             </div>
           )}
         </div>
