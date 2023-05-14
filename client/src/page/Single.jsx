@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { AuthContext } from "../context/AuthContext";
 import Menu from "../components/Menu";
+import Navbar from "../components/Navbar";
 
 const Single = () => {
   const navigate = useNavigate();
