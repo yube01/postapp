@@ -39,8 +39,6 @@ export const login = (req, res) => {
     res
       .cookie("token", token, {
         httpOnly: true,
-        secure: true,
-        sameSite: "none",
       })
       .status(200)
       .json(other);
@@ -48,11 +46,5 @@ export const login = (req, res) => {
 };
 
 export const logout = (req, res) => {
-  res
-    .clearCookie("token", {
-      sameSite: "none",
-      secure: true,
-    })
-    .status(200)
-    .json("Logout successfully");
+  res.clearCookie("token").status(200).json("Logout successfully");
 };

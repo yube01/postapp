@@ -25,7 +25,7 @@ export const getPost = (req, res) => {
 
 export const deletePost = (req, res) => {
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg0MDM4NzU4fQ.oEWQby-FD9tWr2wbISjsY-mUg1X-9tqL0IZGAX8be54";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg0MDQwMDgxfQ.4ITU3XSVqBH3PWKDiVtGXG_n2-SmRnyU-91gpSvCd1Q";
 
   if (!token) return res.status(401).json("Not authenticated!");
 
