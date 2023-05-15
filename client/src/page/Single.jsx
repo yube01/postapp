@@ -4,7 +4,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { AuthContext } from "../context/AuthContext";
 import Menu from "../components/Menu";
-import Navbar from "../components/Navbar";
 
 const Single = () => {
   const navigate = useNavigate();
@@ -38,6 +37,11 @@ const Single = () => {
     }
   };
 
+  const getText = (html) => {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent;
+  };
+
   return (
     <div className="single">
       <div className="content">
@@ -58,11 +62,8 @@ const Single = () => {
           )}
         </div>
         <h1>{post.title}</h1>
-        {/* <p
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(post.desc),
-          }}
-        ></p>{" "} */}
+
+        {getText(post.desc)}
       </div>
       <Menu cat={post.cat} />
     </div>
